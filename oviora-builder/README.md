@@ -1,6 +1,18 @@
 # Oviora Builder
 
-**Oviora Builder** is a lightweight native Android CLI builder for beginners — and for developers whose machines can't handle Android Studio.
+🌐 **Official Website:** https://oviora-builder.netlify.app/  
+📦 **NPM Package:** https://www.npmjs.com/package/oviora-builder  
+💻 **GitHub Repository:** https://github.com/nagodip7-sys/oviora-builder  
+
+Install from NPM:
+
+```powershell
+npm install -g oviora-builder
+```
+
+---
+
+**Oviora Builder** is a lightweight native Android CLI builder for beginners.
 
 It creates a real **native Android Java + XML** project, builds an APK, installs it on a connected Android phone, and launches it using simple commands.
 
@@ -8,39 +20,7 @@ Instead of opening Android Studio and searching deep folders, beginners can work
 
 ---
 
-## 1. Why Oviora Builder?
-
-### The hardware problem
-
-Android Studio recommends 8GB+ RAM, a fast multi-core CPU, and an SSD. On a low-end machine — for example, **4GB RAM, a 2-core processor, and an HDD** — Android Studio becomes nearly unusable. Indexing, Gradle daemon, and the emulator alone can make the IDE crawl before you've written a single line of code.
-
-A huge number of beginner developers, especially in places where high-end laptops aren't affordable, hit this wall immediately. They have a computer. It's just not a computer Android Studio is happy with.
-
-**Oviora Builder removes the IDE entirely.** No background indexing, no emulator requirement, no heavy GUI — just a terminal, a lightweight Node.js CLI, and your phone connected over USB for install/launch. The only resources used are the ones the actual build needs.
-
-### The "pure native" problem
-
-Most beginner-friendly app tools aren't actually native:
-
-| Tool | Language | What it really produces |
-|---|---|---|
-| React Native | JavaScript | Native UI via a JS bridge |
-| Flutter | Dart | Native-like rendering (Skia), not platform code |
-| Cordova / Capacitor | HTML/CSS/JS | A WebView wrapper |
-| Android Studio | Kotlin/Java + XML | **True native Android code** |
-| **Oviora Builder** | **Java + XML** | **True native Android code** |
-
-Android Studio has effectively been the *only* practical way to write pure native Java/XML Android apps. Every "easier" alternative trades away nativeness for convenience.
-
-**Oviora Builder doesn't make that trade.** It gives you the same real, native Java + XML project Android Studio would — same Gradle build, same SDK, same APK — just without the IDE's weight and setup complexity.
-
-### In one line
-
-> Android Studio's native Java/XML output, without Android Studio's hardware demands.
-
----
-
-## 2. What is Oviora Builder?
+## 1. What is Oviora Builder?
 
 Oviora Builder is a command-line tool that helps you create and run Android apps using:
 
@@ -51,6 +31,7 @@ Oviora Builder is a command-line tool that helps you create and run Android apps
 - ADB
 
 It is not a WebView app builder like Cordova.
+
 It creates a native Android project.
 
 Basic flow:
@@ -65,9 +46,62 @@ This creates the project, builds the APK, installs it on the phone, and launches
 
 ---
 
-## 3. Main Goal
+## 2. Current Version
 
-The goal is to make Android development easier for beginners — and possible for developers on low-spec hardware.
+```text
+Oviora Builder v0.1
+Native Java/XML Android CLI Builder
+```
+
+Current v0.1 focuses on:
+
+```text
+Create project
+Sync workspace
+Build debug APK
+Install APK
+Launch app
+Show helpful errors
+```
+
+---
+
+## 3. Current Working Commands
+
+These commands are currently implemented and tested:
+
+```text
+oviora
+oviora doctor
+oviora create MyApp
+oviora sync
+oviora build
+oviora run
+oviora br
+```
+
+### Important
+
+Plugin commands like these are **planned**, but not implemented in v0.1 yet:
+
+```text
+oviora add camera
+oviora add microphone
+oviora add notification
+oviora add foreground-service
+oviora add background-task
+oviora add volume-buttons
+oviora build release
+oviora build aab
+```
+
+If someone runs those commands in v0.1, the CLI will not add those features yet. It will show the command list or behave as an unknown command.
+
+---
+
+## 4. Main Goal
+
+The goal is to make Android development easier for beginners.
 
 Normally Android project files are deep inside folders like:
 
@@ -88,39 +122,6 @@ oviora/
 ```
 
 The user edits simple files inside `oviora/`, and the builder syncs them into the real Android project automatically.
-
----
-
-## 4. Current Status
-
-Current version:
-
-```text
-Oviora Builder v0.1
-Native Java/XML Android CLI Builder
-```
-
-Working commands:
-
-```text
-oviora
-oviora doctor
-oviora create MyApp
-oviora sync
-oviora build
-oviora run
-oviora br
-```
-
-Tested result:
-
-- Project creation works
-- Workspace folder creation works
-- Sync works
-- APK build works
-- APK install works
-- App auto-launch works
-- Error helper works
 
 ---
 
@@ -215,7 +216,7 @@ gradle -v
 
 ### 5.5 Android Phone Setup
 
-To install and launch apps directly (no emulator needed — important for low-RAM machines):
+To install and launch apps directly:
 
 1. Enable Developer Options on phone
 2. Enable USB Debugging
@@ -298,15 +299,7 @@ Gradle bin folder
 
 ---
 
-## 7. Installing Oviora Builder
-
-### Option A — From npm
-
-```powershell
-npm install -g oviora-builder
-```
-
-### Option B — Locally (development)
+## 7. Installing Oviora Builder Locally
 
 Go to the builder folder:
 
@@ -750,7 +743,610 @@ oviora br
 
 ---
 
-## 14. Important Rules
+## 14. Plugin System Status
+
+### Current v0.1
+
+Plugin commands are not implemented yet.
+
+These commands are planned:
+
+```text
+oviora add camera
+oviora add selfie-camera
+oviora add microphone
+oviora add notifications
+oviora add foreground-service
+oviora add background-task
+oviora add volume-buttons
+oviora add firebase
+```
+
+### What should happen if a user runs these now?
+
+In v0.1, they will not add native features yet.
+
+Expected behavior:
+
+```text
+Unknown command or command list shown
+```
+
+This is normal for v0.1.
+
+### Why plugins are important
+
+Without plugins, users must manually edit:
+
+```text
+AndroidManifest.xml
+MainActivity.java
+Java service files
+BroadcastReceiver files
+Gradle dependencies
+Runtime permission code
+```
+
+That is difficult for beginners.
+
+The future plugin system should generate these automatically.
+
+---
+
+## 15. Future Plugin Design
+
+Future command format:
+
+```powershell
+oviora add <feature-name>
+```
+
+Example:
+
+```powershell
+oviora add camera
+```
+
+Each plugin should do four things:
+
+```text
+1. Add required AndroidManifest permissions
+2. Generate Java helper/controller files
+3. Add basic XML/UI sample if needed
+4. Update project config/plugin record
+```
+
+Recommended future folder:
+
+```text
+oviora/
+  plugins/
+    camera.json
+    microphone.json
+    notifications.json
+```
+
+Recommended internal generated folder:
+
+```text
+app/src/main/java/<package>/plugins/
+```
+
+Example generated files:
+
+```text
+CameraController.java
+MicrophoneController.java
+NotificationHelper.java
+ForegroundService.java
+VolumeButtonController.java
+```
+
+---
+
+## 16. Future Native Feature Commands
+
+### 16.1 Camera
+
+Future command:
+
+```powershell
+oviora add camera
+```
+
+Should generate:
+
+```text
+CAMERA permission
+CameraController.java
+Basic open camera method
+Runtime permission request code
+Optional XML button/sample
+```
+
+Possible manifest:
+
+```xml
+<uses-permission android:name="android.permission.CAMERA" />
+```
+
+Possible Java files:
+
+```text
+oviora/java/CameraController.java
+```
+
+Notes:
+
+```text
+Camera is a sensitive permission.
+The app must ask the user at runtime.
+The user can allow or deny permission.
+```
+
+### 16.2 Selfie Camera
+
+Future command:
+
+```powershell
+oviora add selfie-camera
+```
+
+Should generate:
+
+```text
+Camera permission
+Front camera opening helper
+CameraController.java with front-facing camera mode
+Optional preview layout
+```
+
+Notes:
+
+```text
+Not every device behaves the same.
+The plugin should handle fallback if front camera is unavailable.
+```
+
+### 16.3 Microphone
+
+Future command:
+
+```powershell
+oviora add microphone
+```
+
+Should generate:
+
+```text
+RECORD_AUDIO permission
+MicrophoneController.java
+Basic audio recording or audio input sample
+Runtime permission request code
+```
+
+Possible manifest:
+
+```xml
+<uses-permission android:name="android.permission.RECORD_AUDIO" />
+```
+
+Notes:
+
+```text
+Microphone is a sensitive permission.
+The user must understand why the app needs it.
+```
+
+### 16.4 Notifications
+
+Future command:
+
+```powershell
+oviora add notifications
+```
+
+Should generate:
+
+```text
+NotificationHelper.java
+Notification channel code
+Simple local notification test
+POST_NOTIFICATIONS permission for newer Android versions
+```
+
+Possible manifest for newer Android:
+
+```xml
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+```
+
+Notes:
+
+```text
+Android notification behavior changes by Android version.
+The plugin should handle permission request where required.
+```
+
+### 16.5 Foreground Service
+
+Future command:
+
+```powershell
+oviora add foreground-service
+```
+
+Should generate:
+
+```text
+ForegroundService.java
+Notification channel
+Foreground service notification
+Manifest service entry
+Required foreground service permissions/types
+```
+
+Possible uses:
+
+```text
+Music player
+Active location tracking
+Active recording
+Long-running visible task
+```
+
+Important:
+
+```text
+Foreground service must show a visible notification.
+It should not be hidden from users.
+```
+
+### 16.6 Background Task
+
+Future command:
+
+```powershell
+oviora add background-task
+```
+
+Should generate safe background task structure.
+
+Possible future options:
+
+```text
+WorkManager-based task
+AlarmManager-based scheduled task
+Boot receiver if needed
+```
+
+Important:
+
+```text
+Modern Android restricts background services.
+For many cases, WorkManager is safer than raw background service.
+```
+
+### 16.7 Volume Button Access
+
+Future command:
+
+```powershell
+oviora add volume-buttons
+```
+
+Should generate:
+
+```text
+VolumeButtonController.java
+MainActivity key event override sample
+Volume up/down detection
+Safe callback method
+```
+
+Possible use:
+
+```text
+Trigger action when volume up/down is pressed while app is open
+```
+
+Important:
+
+```text
+Volume button access may be limited when app is not active.
+Background volume-button triggers are not always reliable and may be restricted by Android behavior.
+```
+
+### 16.8 Firebase
+
+Future command:
+
+```powershell
+oviora add firebase
+```
+
+Should generate:
+
+```text
+firebase/ folder
+google-services.json instruction
+Gradle Google services plugin setup
+Firebase dependency setup
+Optional FirebaseMessagingService.java
+```
+
+Possible future Firebase features:
+
+```text
+FCM push notifications
+Realtime Database helper
+Authentication helper
+Analytics helper
+```
+
+---
+
+## 17. Runtime Permissions
+
+Some Android features need runtime permission.
+
+Examples:
+
+```text
+Camera
+Microphone
+Location
+Notifications on newer Android versions
+```
+
+The plugin system should not only add manifest permissions.
+
+It must also generate Java code to request permission from the user.
+
+Correct future plugin behavior:
+
+```text
+1. Declare permission in AndroidManifest.xml
+2. Check permission in Java
+3. Request permission if missing
+4. Handle user allow/deny result
+5. Show clear message if permission is denied
+```
+
+Bad plugin behavior:
+
+```text
+Only adding permission in AndroidManifest.xml
+```
+
+That is not enough for modern Android.
+
+---
+
+## 18. Background and Foreground Services
+
+### Background
+
+Background work is complicated on modern Android.
+
+Reason:
+
+```text
+Android limits what apps can do in the background to protect battery, privacy, and performance.
+```
+
+For beginner apps, safe future approach:
+
+```text
+Use WorkManager for deferrable background tasks.
+Use AlarmManager for alarms/scheduled actions.
+Use foreground service only when user-visible continuous work is required.
+```
+
+### Foreground
+
+Foreground service is for active visible tasks.
+
+Example:
+
+```text
+Recording
+Navigation
+Music playback
+Active tracking
+```
+
+Foreground service should:
+
+```text
+Show a visible notification
+Declare correct service type
+Declare correct permission
+Stop when work is done
+```
+
+Important:
+
+```text
+Do not use foreground service to secretly run hidden background tasks.
+```
+
+---
+
+## 19. Release, Signed APK, and AAB Status
+
+### Current v0.1
+
+Currently implemented:
+
+```text
+Debug APK only
+```
+
+Current command:
+
+```powershell
+oviora build
+```
+
+Runs:
+
+```powershell
+.\gradlew.bat assembleDebug
+```
+
+Output:
+
+```text
+app/build/outputs/apk/debug/app-debug.apk
+```
+
+This APK is good for:
+
+```text
+Testing
+USB install
+Development
+Learning
+```
+
+It is not the final Play Store release build.
+
+---
+
+## 20. Future Release Commands
+
+### 20.1 Release APK
+
+Future command:
+
+```powershell
+oviora build release-apk
+```
+
+Should run:
+
+```powershell
+.\gradlew.bat assembleRelease
+```
+
+Expected output:
+
+```text
+app/build/outputs/apk/release/app-release.apk
+```
+
+But a release APK must be signed.
+
+### 20.2 Android App Bundle
+
+Future command:
+
+```powershell
+oviora build aab
+```
+
+Should run:
+
+```powershell
+.\gradlew.bat bundleRelease
+```
+
+Expected output:
+
+```text
+app/build/outputs/bundle/release/app-release.aab
+```
+
+AAB is commonly used for Google Play publishing.
+
+### 20.3 Release Init
+
+Future command:
+
+```powershell
+oviora release init
+```
+
+Should help create:
+
+```text
+keystore file
+key alias
+secure signing config
+release configuration
+```
+
+Possible files:
+
+```text
+keystore/release-key.jks
+keystore/README_SECURITY.txt
+signing.properties
+```
+
+Important security rule:
+
+```text
+Never upload keystore passwords to GitHub.
+Never share release-key.jks publicly.
+Never lose the keystore.
+```
+
+### 20.4 Release Build Flow
+
+Future release flow:
+
+```text
+1. oviora release init
+2. oviora build release-apk
+3. oviora build aab
+4. Test release build
+5. Upload AAB/APK to chosen store
+```
+
+---
+
+## 21. Example Future Plugin Flow
+
+Example camera plugin future flow:
+
+```powershell
+oviora create CameraApp
+cd CameraApp
+oviora add camera
+oviora br
+```
+
+Expected future result:
+
+```text
+Camera permission added
+CameraController.java generated
+MainActivity hook added
+Basic camera button/sample added
+App builds and runs
+```
+
+Example notification plugin future flow:
+
+```powershell
+oviora add notifications
+oviora br
+```
+
+Expected future result:
+
+```text
+NotificationHelper.java generated
+Notification channel created
+Test notification method added
+Runtime permission handled if needed
+```
+
+---
+
+## 22. Important Rules
 
 ### Rule 1
 
@@ -784,9 +1380,13 @@ If build fails, read:
 logs/last-error.txt
 ```
 
+### Rule 7
+
+Plugin commands are future features unless implemented in code.
+
 ---
 
-## 15. Troubleshooting
+## 23. Troubleshooting
 
 ### Problem: `oviora.config.json not found`
 
@@ -905,7 +1505,7 @@ Wrong form:
 
 ---
 
-## 16. Current Limitations
+## 24. Current Limitations
 
 Oviora Builder v0.1 does not yet include:
 
@@ -919,6 +1519,10 @@ AAB generation
 Plugin system
 Camera shortcut command
 Microphone shortcut command
+Notification shortcut command
+Foreground service shortcut command
+Background task shortcut command
+Volume button shortcut command
 Firebase Gradle auto-setup
 GUI editor
 Code autocomplete
@@ -937,7 +1541,7 @@ Launch
 
 ---
 
-## 17. Future Upgrade Plan
+## 25. Future Upgrade Plan
 
 Planned commands:
 
@@ -946,11 +1550,16 @@ oviora clean
 oviora logs
 oviora open
 oviora add camera
+oviora add selfie-camera
 oviora add microphone
+oviora add notifications
+oviora add foreground-service
+oviora add background-task
+oviora add volume-buttons
 oviora add firebase
-oviora add location
-oviora build release
+oviora build release-apk
 oviora build aab
+oviora release init
 oviora doctor fix
 ```
 
@@ -973,26 +1582,14 @@ adb logcat shortcut
 build logs
 ```
 
-### Future `oviora add camera`
+### Future `oviora open`
 
-Will generate:
-
-```text
-Camera permission
-CameraController.java
-Basic camera open code
-Manifest changes
-```
-
-### Future `oviora add microphone`
-
-Will generate:
+May open:
 
 ```text
-RECORD_AUDIO permission
-MicrophoneController.java
-Basic audio recording code
-Manifest changes
+current project folder
+oviora workspace folder
+APK output folder
 ```
 
 ### Future setup installer
@@ -1014,7 +1611,7 @@ Current version does not do this yet.
 
 ---
 
-## 18. For AI Tools and Developer Assistants
+## 26. For AI Tools and Developer Assistants
 
 If an AI tool reads this repository, understand it like this:
 
@@ -1029,16 +1626,6 @@ User edits oviora/ workspace.
 Builder syncs workspace into app/src/main.
 Gradle builds APK.
 ADB installs and launches APK.
-```
-
-Why it exists:
-
-```text
-Android Studio requires high-end hardware (8GB+ RAM, SSD recommended).
-Oviora Builder removes the IDE so native Java/XML development
-is possible on low-spec machines (e.g. 4GB RAM, 2-core CPU, HDD),
-without sacrificing nativeness like React Native, Flutter, or
-Cordova/Capacitor do.
 ```
 
 Important internal functions:
@@ -1059,7 +1646,7 @@ launchApp()
 installDebugApk()
 ```
 
-Important project commands:
+Important current commands:
 
 ```text
 doctor
@@ -1068,6 +1655,18 @@ sync
 build
 run
 br
+```
+
+Important future commands:
+
+```text
+add
+clean
+logs
+open
+release
+build aab
+build release-apk
 ```
 
 Do not assume this is a Cordova app.
@@ -1080,7 +1679,7 @@ Native Android Java/XML generated by a lightweight CLI.
 
 ---
 
-## 19. For Developers
+## 27. For Developers
 
 This project is currently a single-file CLI:
 
@@ -1098,14 +1697,20 @@ src/
   build.js
   run.js
   errors.js
+  plugins/
+    camera.js
+    microphone.js
+    notifications.js
+    foreground-service.js
   templates/
+  release/
 ```
 
 But v0.1 intentionally keeps one file for beginner understanding.
 
 ---
 
-## 20. Recommended First Test
+## 28. Recommended First Test
 
 ```powershell
 cd C:\Users\hp\oviora-builder
@@ -1125,7 +1730,7 @@ App launched
 
 ---
 
-## 21. Summary
+## 29. Summary
 
 Oviora Builder turns this complex Android workflow:
 
@@ -1147,6 +1752,16 @@ cd MyApp
 oviora br
 ```
 
-And it does it without requiring the hardware Android Studio demands — keeping the output 100% native Java/XML, not a bridge, not a WebView.
-
 That is the main purpose of the project.
+
+Current v0.1 is the core builder.
+
+Future versions will add:
+
+```text
+plugin commands
+native feature shortcuts
+release APK
+AAB export
+automatic setup installer
+```
