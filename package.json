@@ -1,0 +1,44 @@
+{
+  "name": "oviora-builder",
+  "version": "1.0.2",
+  "description": "A lightweight native Android Java/XML CLI builder for beginners.",
+  "keywords": [
+    "android",
+    "android-builder",
+    "native-android",
+    "java",
+    "xml",
+    "cli",
+    "apk",
+    "adb",
+    "gradle",
+    "beginner"
+  ],
+  "homepage": "https://github.com/nagodip7-sys/oviora-builder#readme",
+  "bugs": {
+    "url": "https://github.com/nagodip7-sys/oviora-builder/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nagodip7-sys/oviora-builder.git"
+  },
+  "license": "MIT",
+  "author": "Amer Das",
+  "type": "commonjs",
+  "main": "bin/oviora.js",
+  "bin": {
+    "oviora": "bin/oviora.js"
+  },
+  "files": [
+    "bin",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "doctor": "node bin/oviora.js doctor",
+    "test": "node bin/oviora.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
