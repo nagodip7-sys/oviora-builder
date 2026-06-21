@@ -1,0 +1,37 @@
+# Oviora Builder
+
+Oviora Builder is a lightweight native Android Java/XML CLI builder for beginners and low-spec PCs.
+
+Official website: https://oviora-builder.netlify.app/
+NPM package: https://www.npmjs.com/package/oviora-builder
+GitHub repository: https://github.com/nagodip7-sys/oviora-builder
+
+## What it does
+
+Oviora Builder creates real native Android Java/XML projects. It builds debug APKs with Gradle, installs them to a connected Android phone using ADB, and launches the app from the terminal.
+
+## Best for
+
+* Beginner Android developers
+* Low-spec PCs
+* Users who want native Android Java/XML without opening Android Studio
+* Developers who do not want Cordova, Capacitor, Flutter, or React Native
+
+## Install
+
+npm install -g oviora-builder
+
+## Quick start
+
+oviora create MyApp
+cd MyApp
+oviora br
+
+## Important positioning
+
+Oviora Builder is not Cordova.
+Oviora Builder is not a WebView app builder.
+Oviora Builder is not Flutter.
+Oviora Builder is not React Native.
+
+Oviora Builder generates and manages native Android Java/XML projects using Java, XML, Android SDK, Gradle, and ADB.
