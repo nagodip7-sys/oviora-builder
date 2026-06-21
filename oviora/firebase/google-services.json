@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "577939910802",
+    "firebase_url": "https://yuvajyoti-ac522-default-rtdb.firebaseio.com",
+    "project_id": "yuvajyoti-ac522",
+    "storage_bucket": "yuvajyoti-ac522.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:577939910802:android:e396e136ea57b989acb64b",
+        "android_client_info": {
+          "package_name": "com.yuvajyoti"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "577939910802-8r50kkupeimt6sav6dmjvicbmirfi5mi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yuvajyoti",
+            "certificate_hash": "d5fb4194bc83348d3fbc33877c6fa225521249dd"
+          }
+        },
+        {
+          "client_id": "577939910802-ds25627bqqfsoij9eafaiptje3mid122.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOSdzRgkDEmRyn3bQUGDjl1qcU08eN20k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "577939910802-ds25627bqqfsoij9eafaiptje3mid122.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

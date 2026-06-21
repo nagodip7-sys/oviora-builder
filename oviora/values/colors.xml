@@ -1,0 +1,11 @@
+<resources>
+    <color name="colorBackground">#101018</color>
+    <color name="colorSurface">#191925</color>
+    <color name="colorSurfaceLight">#242436</color>
+    <color name="colorCard">#1E1E2D</color>
+    <color name="colorPrimary">#8B5CF6</color>
+    <color name="colorPrimarySoft">#2B2342</color>
+    <color name="colorAccent">#FF4F9D</color>
+    <color name="colorTextPrimary">#FFFFFF</color>
+    <color name="colorTextMuted">#9CA3AF</color>
+</resources>
