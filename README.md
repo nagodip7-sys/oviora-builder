@@ -1,234 +1,11 @@
 # Oviora Builder
 
-**Build native Android apps without the heavy setup.**
-
-Oviora Builder is a lightweight **native Android Java/XML CLI builder** for beginners, students, low-spec PCs, and developers who want a fast build-run workflow without opening the Android Studio GUI.
-
-```powershell
-oviora doctor
-oviora create MyApp
-cd MyApp
-oviora br
-```
-
-`oviora br` means **Build + Run**: it syncs your workspace, builds the APK, installs it on a connected Android phone, and launches the app automatically.
-
----
-
-## Official Links
-
-- 🌐 **Website:** https://oviora-builder.netlify.app/
-- 📦 **NPM Package:** https://www.npmjs.com/package/oviora-builder
-- 💻 **GitHub Repository:** https://github.com/nagodip7-sys/oviora-builder
-- 📝 **Blog:** https://oviora-builder.hashnode.dev/oviora-builder-a-lightweight-android-studio-alternative-for-low-spec-pcs
-- ⬇️ **Windows Installer:** https://github.com/nagodip7-sys/oviora-builder/releases/download/v1.0.0-windows-installer/Oviora.Builder.Installer.Setup.1.0.0.exe
-
----
-
-## Current Public Version
-
-```text
-NPM Package:        oviora-builder@1.0.2
-CLI Engine:         0.2.0-safe-sync
-Windows Installer:  v1.0.0
-Release Tag:        v1.0.0-windows-installer
-```
-
----
-
-## What is Oviora Builder?
-
-Oviora Builder creates a real native Android Java/XML project and manages the build workflow from the terminal.
-
-It uses:
-
-```text
-Java
-XML
-Android SDK
-Gradle
-ADB
-Node.js CLI
-```
-
-It is **not**:
-
-```text
-Not Flutter
-Not React Native
-Not Cordova
-Not Capacitor
-Not WebView
-```
-
-Oviora Builder is designed for this simple workflow:
-
-```text
-Install Oviora
-Open PowerShell
-Create app
-Build APK
-Install on phone
-Launch app
-```
-
----
-
-## Recommended: Windows Installer
-
-For beginners, the **Windows Installer** is the recommended option.
-
-Download:
-
-```text
-Oviora.Builder.Installer.Setup.1.0.0.exe
-```
-
-Direct link:
-
-```text
-https://github.com/nagodip7-sys/oviora-builder/releases/download/v1.0.0-windows-installer/Oviora.Builder.Installer.Setup.1.0.0.exe
-```
-
-### What the installer does
-
-The installer automatically sets up a portable Android development runtime.
-
-It installs Oviora into:
-
-```text
-C:\Oviora
-```
-
-It includes:
-
-```text
-C:\Oviora\tools\nodejs
-C:\Oviora\tools\jdk
-C:\Oviora\tools\android-sdk
-C:\Oviora\tools\gradle
-C:\Oviora\tools\oviora-cli
-C:\Oviora\portable-bin
-```
-
-It adds this folder to the **User PATH**:
-
-```text
-C:\Oviora\portable-bin
-```
-
-This allows users to open a new PowerShell window and run:
-
-```powershell
-oviora doctor
-oviora create MyApp
-cd MyApp
-oviora br
-```
-
-No manual setup is required for:
-
-```text
-Java JDK
-Android SDK
-Gradle
-Node.js
-ADB
-JAVA_HOME
-ANDROID_HOME
-ANDROID_SDK_ROOT
-```
-
-The `oviora.cmd` launcher sets the portable environment automatically when the `oviora` command runs.
-
----
-
-## Important After Installation
-
-After installing the Windows EXE, open a **new PowerShell window**.
-
-Then run:
-
-```powershell
-oviora doctor
-```
-
-Expected result:
-
-```text
-Node.js: OK
-NPM: OK
-Java: OK
-ADB: OK
-Gradle: OK
-```
-
-To confirm the portable installer environment is being used:
-
-```powershell
-where.exe oviora
-```
-
-Expected first result:
-
-```text
-C:\Oviora\portable-bin\oviora.cmd
-```
-
----
-
-## Security Notice
-
-The Windows installer is currently unsigned.
-
-If Windows shows:
-
-```text
-Windows protected your PC
-```
-
-Click:
-
-```text
-More info → Run anyway
-```
-
-This warning appears because the installer is new and does not yet have Microsoft SmartScreen reputation.
-
----
-
-## System Requirements
-
-Supported:
-
-```text
-Windows 10 64-bit
-Windows 11 64-bit
-```
-
-Recommended:
-
-```text
-4 GB RAM minimum
-8 GB RAM recommended
-SSD recommended
-Around 3 GB free disk space
-Android phone with USB debugging enabled for run/br
-```
-
-Not supported:
-
-```text
-Windows 7
-Windows 8 / 8.1
-32-bit Windows
-```
-
----
-
-## Install from NPM
-
-If you already have Node.js, Java, Android SDK, ADB, and Gradle configured, you can install from NPM:
+🌐 **Official Website:** https://oviora-builder.netlify.app/  
+📦 **NPM Package:** https://www.npmjs.com/package/oviora-builder  
+💻 **GitHub Repository:** https://github.com/nagodip7-sys/oviora-builder  
+📝 **Blog:** https://oviora-builder.hashnode.dev/oviora-builder-a-lightweight-android-studio-alternative-for-low-spec-pcs  
+
+Install from NPM:
 
 ```powershell
 npm install -g oviora-builder
@@ -240,32 +17,101 @@ Run:
 oviora
 ```
 
-For beginners, the Windows Installer is better because it includes the complete portable runtime.
-
 ---
 
-## Beginner Quick Start
+## What is Oviora Builder?
+
+**Oviora Builder** is a lightweight native Android **Java/XML CLI builder** for beginners and low-spec PCs.
+
+It creates a real native Android project, builds an APK with Gradle, installs it on a connected Android phone using ADB, and launches the app using simple terminal commands.
+
+Oviora Builder is designed for developers who want native Android output without opening the heavy Android Studio GUI.
 
 ```powershell
-oviora doctor
 oviora create MyApp
 cd MyApp
 oviora br
 ```
 
-That is the main beginner workflow.
-
-### What `oviora br` does
+Oviora Builder is:
 
 ```text
-1. Validates the project
-2. Validates the Oviora workspace
-3. Creates backup of generated files
-4. Mirror-syncs oviora/ into app/src/main/
-5. Builds APK with Gradle
-6. Installs APK using ADB
-7. Launches the app on the connected phone
+Native Android Java/XML
+CLI based
+Beginner friendly
+Useful for low-spec PCs
+ADB + Gradle powered
 ```
+
+Oviora Builder is **not**:
+
+```text
+Not Cordova
+Not Capacitor
+Not WebView
+Not Flutter
+Not React Native
+```
+
+---
+
+## Current Version
+
+```text
+Oviora Builder v0.2.0-safe-sync
+Native Java/XML Android CLI Builder
+```
+
+This version focuses on:
+
+```text
+Native Java/XML project creation
+Safe workspace sync
+Mirror sync
+Backup before sync
+Custom package name support
+Debug APK build
+APK install
+APK launch
+Firebase google-services.json sync
+Firebase Google Sign-In manual test support
+Native Android feature manual test support
+Helpful error messages
+```
+
+---
+
+## Core Idea
+
+Oviora Builder gives the beginner a clean workspace:
+
+```text
+oviora/
+  layout/
+  java/
+  images/
+  values/
+  firebase/
+```
+
+The real Android project is generated from this workspace:
+
+```text
+app/src/main/res/layout/
+app/src/main/java/
+app/src/main/res/drawable/
+app/src/main/res/values/
+app/google-services.json
+```
+
+Important rule:
+
+```text
+oviora/ = source of truth
+app/src/main/... = generated output
+```
+
+Users should mainly edit files inside `oviora/`.
 
 ---
 
@@ -285,6 +131,266 @@ oviora restore --force
 oviora status
 ```
 
+Best beginner command:
+
+```powershell
+oviora br
+```
+
+`br` means:
+
+```text
+Build + Run
+```
+
+It does:
+
+```text
+1. Validate project
+2. Validate workspace
+3. Backup existing generated files
+4. Mirror sync oviora/ to app/src/main/
+5. Build APK with Gradle
+6. Install APK with ADB
+7. Launch app
+```
+
+---
+
+## What Changed in v0.2
+
+### 1. Safe source-of-truth rule
+
+v0.2 clearly says:
+
+```text
+oviora/ is the source of truth.
+app/src/main/ is generated output.
+```
+
+### 2. Mirror sync instead of copy-only sync
+
+v0.1 copied files from `oviora/` to `app/src/main/`, but it did not remove deleted files.
+
+v0.2 uses mirror sync.
+
+If a file is deleted from:
+
+```text
+oviora/layout/
+```
+
+it is also removed from:
+
+```text
+app/src/main/res/layout/
+```
+
+This prevents old deleted files from coming back.
+
+### 3. No dangerous auto-restore during build
+
+v0.1 could auto-create missing workspace files during build.
+
+That was dangerous because deleted or modified files could come back from old internal copies.
+
+v0.2 does not auto-restore during build.
+
+If a workspace file is missing, build stops and tells the user to run:
+
+```powershell
+oviora restore
+```
+
+### 4. Backup before sync
+
+Before sync, Oviora creates backup files here:
+
+```text
+.oviora/backups/
+```
+
+This helps protect user code.
+
+### 5. Custom package name support
+
+Now users can create apps with a real package name:
+
+```powershell
+oviora create YuvaJyoti --package com.yuvajyoti
+```
+
+This is important for Firebase because `google-services.json` must match the Android package name.
+
+### 6. Status command
+
+```powershell
+oviora status
+```
+
+Shows:
+
+```text
+App name
+Package name
+Workspace status
+APK status
+Missing folders
+Stale APK status
+```
+
+### 7. Restore command
+
+```powershell
+oviora restore
+```
+
+Restores missing default workspace files.
+
+```powershell
+oviora restore --force
+```
+
+Force overwrites default workspace files.
+
+---
+
+## Required Software
+
+### Node.js and npm
+
+```powershell
+node -v
+npm -v
+```
+
+### Java JDK
+
+Recommended:
+
+```text
+JDK 17 or JDK 21
+```
+
+Check:
+
+```powershell
+java -version
+javac -version
+```
+
+### Android SDK
+
+Required Android SDK parts:
+
+```text
+Android SDK Platform
+Android SDK Build-Tools
+Android SDK Platform-Tools
+Android SDK Command-line Tools
+```
+
+Check ADB:
+
+```powershell
+adb version
+```
+
+### Gradle
+
+Oviora Builder uses global Gradle only when Gradle Wrapper is missing.
+
+Check:
+
+```powershell
+gradle -v
+```
+
+After wrapper creation, the project uses:
+
+```powershell
+.\gradlew.bat assembleDebug
+```
+
+### Android phone
+
+Enable:
+
+```text
+Developer Options
+USB Debugging
+```
+
+Check:
+
+```powershell
+adb devices
+```
+
+Expected:
+
+```text
+device
+```
+
+---
+
+## Environment Variables
+
+### JAVA_HOME
+
+Example:
+
+```text
+C:\Program Files\Java\jdk-21
+```
+
+### ANDROID_HOME
+
+Example:
+
+```text
+C:\Users\<username>\AppData\Local\Android\Sdk
+```
+
+### PATH should include
+
+```text
+%JAVA_HOME%\bin
+%ANDROID_HOME%\platform-tools
+%ANDROID_HOME%\cmdline-tools\latest\bin
+```
+
+Optional:
+
+```text
+Gradle bin folder
+```
+
+---
+
+## Install Oviora Builder
+
+From NPM:
+
+```powershell
+npm install -g oviora-builder
+```
+
+Check:
+
+```powershell
+oviora
+```
+
+For local development inside the source folder:
+
+```powershell
+cd C:\Users\hp\oviora-builder
+npm link
+oviora
+```
+
 ---
 
 ## Command Details
@@ -299,7 +405,7 @@ oviora
 
 ### `oviora doctor`
 
-Checks required tools.
+Checks system tools.
 
 ```powershell
 oviora doctor
@@ -331,31 +437,41 @@ com.oviora.myapp
 
 ### `oviora create MyApp --package com.example.myapp`
 
-Creates a project with a custom Android package name.
+Creates a project with custom package name.
 
 ```powershell
 oviora create MyApp --package com.example.myapp
 ```
 
-Use this for Firebase or real package-based Android apps.
+Use this for Firebase apps.
 
 ### `oviora sync`
 
-Mirror-syncs the Oviora workspace to the generated Android project.
+Mirror syncs workspace to generated Android output.
 
 ```powershell
 oviora sync
 ```
 
+Mapping:
+
+```text
+oviora/layout/   -> app/src/main/res/layout/
+oviora/java/     -> app/src/main/java/<package>/
+oviora/images/   -> app/src/main/res/drawable/
+oviora/values/   -> app/src/main/res/values/
+oviora/firebase/google-services.json -> app/google-services.json
+```
+
 ### `oviora build`
 
-Builds the debug APK.
+Builds debug APK.
 
 ```powershell
 oviora build
 ```
 
-APK output:
+Output:
 
 ```text
 app/build/outputs/apk/debug/app-debug.apk
@@ -363,13 +479,13 @@ app/build/outputs/apk/debug/app-debug.apk
 
 ### `oviora run`
 
-Installs and launches the APK on a connected Android phone.
+Installs and launches APK.
 
 ```powershell
 oviora run
 ```
 
-If the APK is missing or stale, Oviora rebuilds first.
+If APK is missing or stale, v0.2 rebuilds first.
 
 ### `oviora br`
 
@@ -379,7 +495,7 @@ Build + Run.
 oviora br
 ```
 
-This is the recommended daily command.
+Recommended daily command.
 
 ### `oviora restore`
 
@@ -405,20 +521,9 @@ Shows project status.
 oviora status
 ```
 
-Shows:
-
-```text
-App name
-Package name
-Workspace status
-APK status
-Missing folders
-Stale APK status
-```
-
 ---
 
-## Project Structure
+## Project Folder Structure
 
 After:
 
@@ -426,7 +531,7 @@ After:
 oviora create MyApp
 ```
 
-Project structure:
+Structure:
 
 ```text
 MyApp/
@@ -464,167 +569,225 @@ MyApp/
 
 ---
 
-## Source of Truth Rule
+## Which Folder Should Beginners Edit?
 
-Oviora Builder uses a safe workspace system.
+Edit this:
 
 ```text
-oviora/ = source of truth
-app/src/main/... = generated output
+oviora/
 ```
 
-Users should mainly edit:
+Normally do not edit this unless advanced:
 
 ```text
-oviora/layout/
-oviora/java/
+app/
+```
+
+Recommended beginner edit files:
+
+```text
+oviora/layout/activity_main.xml
+oviora/java/MainActivity.java
 oviora/images/
 oviora/values/
-oviora/firebase/
+oviora/firebase/google-services.json
 ```
 
-Oviora syncs them into:
+Advanced edit files:
 
 ```text
-oviora/layout/                    → app/src/main/res/layout/
-oviora/java/                      → app/src/main/java/<package>/
-oviora/images/                    → app/src/main/res/drawable/
-oviora/values/                    → app/src/main/res/values/
-oviora/firebase/google-services.json → app/google-services.json
+app/src/main/AndroidManifest.xml
+app/build.gradle
+build.gradle
+gradle.properties
 ```
 
-Normally beginners should not edit `app/src/main/` directly unless they know what they are doing.
+Note:
+
+```text
+AndroidManifest.xml is still inside app/src/main/ in this version.
+Future Oviora versions may add oviora/manifest/ support.
+```
 
 ---
 
-## Safe Sync System
+## Firebase Google Sign-In Test Project
 
-Oviora Builder `0.2.0-safe-sync` includes a safer sync model.
-
-### 1. Mirror sync
-
-If a file is deleted from:
+This section shows how to create a simple native Android app with:
 
 ```text
-oviora/layout/
+Google Sign-In
+FirebaseAuth login
+Gmail account picker
+Name and email display
+Sign out
 ```
 
-it is also removed from:
+### 1. Create project
 
-```text
-app/src/main/res/layout/
-```
+Replace package with your own Firebase Android package name.
 
-This prevents old deleted files from coming back.
-
-### 2. Backup before sync
-
-Before syncing, Oviora creates backups in:
-
-```text
-.oviora/backups/
-```
-
-### 3. No dangerous auto-restore during build
-
-Oviora does not silently recreate missing workspace files during build.
-
-If a workspace file is missing, the build stops and tells the user to run:
+Example:
 
 ```powershell
-oviora restore
+oviora create YuvaJyoti --package com.yuvajyoti
+cd YuvaJyoti
 ```
 
-### 4. Stale APK detection
-
-If the APK is old or missing, `oviora run` can rebuild before installing.
-
-### 5. Custom package support
-
-Create apps with a real package name:
-
-```powershell
-oviora create MyApp --package com.example.myapp
-```
-
----
-
-## Windows Installer vs NPM
-
-| Feature | Windows Installer | NPM Install |
-|---|---|---|
-| Beginner friendly | Yes | Medium |
-| Includes Node.js | Yes | No |
-| Includes JDK | Yes | No |
-| Includes Android SDK | Yes | No |
-| Includes Gradle | Yes | No |
-| Includes ADB | Yes | No |
-| Auto command setup | Yes | NPM global command |
-| Manual environment setup | No | Usually yes |
-| Best for | Beginners / low-spec PCs | Developers with existing setup |
-
----
-
-## Native Android, Not WebView
-
-Oviora Builder creates a native Android Java/XML project.
-
-It does not use:
+Important:
 
 ```text
-Flutter engine
-React Native bridge
-Cordova WebView
-Capacitor WebView
+The package name inside oviora.config.json must match the package name inside google-services.json.
 ```
 
-It uses:
+Example `oviora.config.json`:
 
-```text
-Java
-XML
-Android SDK
-Gradle
-ADB
+```json
+{
+  "appName": "YuvaJyoti",
+  "packageName": "com.yuvajyoti",
+  "language": "java",
+  "ui": "xml",
+  "sourceOfTruth": "oviora",
+  "generatedOutput": "app/src/main"
+}
 ```
 
-This means the generated app is a real Android project, not a website wrapped inside an app.
+### 2. Add Firebase config
 
----
-
-## Firebase Support Status
-
-Current version supports Firebase configuration sync.
-
-Place Firebase config here:
+Place your Firebase Android config file here:
 
 ```text
 oviora/firebase/google-services.json
 ```
 
-Oviora syncs it to:
+After sync, Oviora copies it to:
 
 ```text
 app/google-services.json
 ```
 
-For public repositories, do not upload private Firebase/admin files.
-
-Use sample files such as:
+Use this public placeholder name instead of real config when publishing examples:
 
 ```text
 google-services.sample.json
 ```
 
-Current Firebase features are still manual setup. Automatic commands are planned for future versions.
+### 3. Enable Google provider in Firebase
+
+Firebase Console:
+
+```text
+Authentication
+→ Sign-in method
+→ Google
+→ Enable
+→ Save
+```
+
+### 4. Add SHA-1 if needed
+
+If Google Sign-In gives error code 10:
+
+```powershell
+.\gradlew.bat signingReport
+```
+
+Copy SHA1 and add it in Firebase Console:
+
+```text
+Project settings
+→ Your Android app
+→ SHA certificate fingerprints
+→ Add SHA-1
+```
+
+Then download fresh `google-services.json` and replace:
+
+```text
+oviora/firebase/google-services.json
+```
 
 ---
 
-## Manual Native Feature Test Support
+## Firebase Gradle Setup
 
-Oviora Builder can be used to manually test native Android features by editing Java/XML/Gradle files.
+### Root `build.gradle`
 
-Tested/manual feature areas:
+File:
+
+```text
+build.gradle
+```
+
+```gradle
+plugins {
+    id 'com.android.application' version '8.7.3' apply false
+    id 'com.google.gms.google-services' version '4.5.0' apply false
+}
+```
+
+### App `build.gradle`
+
+File:
+
+```text
+app/build.gradle
+```
+
+```gradle
+plugins {
+    id 'com.android.application'
+    id 'com.google.gms.google-services'
+}
+
+android {
+    namespace 'com.yuvajyoti'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId 'com.yuvajyoti'
+        minSdk 23
+        targetSdk 35
+        versionCode 10001
+        versionName '10.0.1'
+    }
+}
+
+dependencies {
+    implementation platform('com.google.firebase:firebase-bom:34.15.0')
+    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.android.gms:play-services-auth:21.4.0'
+}
+```
+
+Important:
+
+```text
+Change namespace and applicationId to match your package name.
+```
+
+### `gradle.properties`
+
+File:
+
+```text
+gradle.properties
+```
+
+```properties
+org.gradle.jvmargs=-Xmx1536m -Dfile.encoding=UTF-8
+android.useAndroidX=true
+android.nonTransitiveRClass=false
+```
+
+---
+
+## Native Test Project
+
+This manual test project proves Oviora Builder can run native Android code.
+
+It includes:
 
 ```text
 Google Sign-In
@@ -634,6 +797,212 @@ Camera intent
 Microphone recording test
 Location test
 Runtime permissions
+```
+
+Native tests:
+
+| Button | What it tests |
+|---|---|
+| Sign in with Google | GoogleSignInClient + FirebaseAuth |
+| Test Camera | Android camera intent |
+| Test Notification | NotificationManager + NotificationChannel |
+| Test Microphone 3 sec | MediaRecorder |
+| Test Location | LocationManager |
+
+---
+
+## AndroidManifest.xml for Native Test
+
+File:
+
+```text
+app/src/main/AndroidManifest.xml
+```
+
+```xml
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-feature
+        android:name="android.hardware.microphone"
+        android:required="false" />
+
+    <application
+        android:theme="@style/AppTheme"
+        android:label="YuvaJyoti">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+    </application>
+</manifest>
+```
+
+---
+
+## activity_main.xml for Native Test
+
+File:
+
+```text
+oviora/layout/activity_main.xml
+```
+
+Use this layout for the Google Sign-In + native feature test project:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#101018"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="YuvaJyoti Native Test"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:id="@+id/statusText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Not signed in"
+            android:textColor="#B8B8C8"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:layout_marginBottom="18dp" />
+
+        <Button
+            android:id="@+id/googleSignInButton"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="Sign in with Google"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/signOutButton"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="10dp"
+            android:text="Sign out"
+            android:textAllCaps="false" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Native Feature Tests"
+            android:textColor="#FFFFFF"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/cameraButton"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="Test Camera"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/notificationButton"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="10dp"
+            android:text="Test Notification"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/micButton"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="10dp"
+            android:text="Test Microphone 3 sec"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/locationButton"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="10dp"
+            android:text="Test Location"
+            android:textAllCaps="false" />
+
+        <TextView
+            android:id="@+id/nativeStatusText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Native status will show here"
+            android:textColor="#9CA3AF"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:layout_marginTop="20dp" />
+
+    </LinearLayout>
+</ScrollView>
+```
+
+---
+
+## MainActivity.java for Native Test
+
+File:
+
+```text
+oviora/java/MainActivity.java
+```
+
+This file handles:
+
+```text
+Google Sign-In
+FirebaseAuth login
+Sign out
+Camera permission
+Camera open test
+Notification permission
+Local notification test
+Microphone permission
+3-second microphone recording test
+Location permission
+Last known / live location test
+UI status updates
+```
+
+Because this Java file is long, keep the full tested version in an example file:
+
+```text
+examples/firebase-google-native-test/MainActivity.java
 ```
 
 Recommended example folder:
@@ -655,24 +1024,83 @@ examples/
 
 ## Build and Run Test Project
 
+After editing files:
+
 ```powershell
-oviora create TestApp --package com.example.testapp
-cd TestApp
 oviora br
 ```
 
-Success means:
-
-```text
-APK built
-APK installed
-App launched
-```
-
-If an older app package conflicts:
+If old package conflict happens:
 
 ```powershell
-adb uninstall com.example.testapp
+adb uninstall com.yuvajyoti
+oviora br
+```
+
+If version downgrade happens:
+
+```text
+INSTALL_FAILED_VERSION_DOWNGRADE
+```
+
+Fix option 1:
+
+```powershell
+adb uninstall com.yuvajyoti
+oviora br
+```
+
+Fix option 2:
+
+Increase versionCode:
+
+```gradle
+versionCode 10001
+versionName '10.0.1'
+```
+
+---
+
+## Expected Test Result
+
+Expected result:
+
+```text
+App builds successfully
+APK installs on phone
+App launches
+Google account picker opens
+User can sign in with Gmail
+Name/email displays in app
+Notification test sends local notification
+Camera test opens camera app
+Microphone test records 3 seconds in app cache
+Location test shows latitude/longitude if location is available
+```
+
+---
+
+## Tested Proof
+
+Latest local test showed:
+
+```text
+Version: 0.2.0-safe-sync
+Source of truth: oviora/
+Backup created before sync
+Mirror sync completed
+Firebase config synced
+processDebugGoogleServices executed
+BUILD SUCCESSFUL
+APK generated at app/build/outputs/apk/debug/app-debug.apk
+```
+
+The install issue appeared only because the phone already had the same package installed with higher `versionCode`.
+
+Fix:
+
+```powershell
+adb uninstall com.yuvajyoti
 oviora br
 ```
 
@@ -680,27 +1108,13 @@ oviora br
 
 ## Common Problems and Fixes
 
-### `oviora` command not found
+### Problem: `oviora.config.json not found`
 
-Close the old PowerShell and open a new PowerShell window.
-
-Check:
-
-```powershell
-where.exe oviora
-```
-
-Expected first line:
+Cause:
 
 ```text
-C:\Oviora\portable-bin\oviora.cmd
-```
-
-If missing, reinstall with the Windows Installer or check that `C:\Oviora\portable-bin` exists in User PATH.
-
-### `oviora.config.json not found`
-
 You are not inside an Oviora project folder.
+```
 
 Fix:
 
@@ -709,40 +1123,39 @@ cd YourAppFolder
 oviora br
 ```
 
-### ADB: NOT FOUND
+### Problem: Android SDK path not found
 
-If using the Windows Installer, run:
+Fix:
 
 ```powershell
-where.exe oviora
+oviora doctor
 ```
 
-The first result should be:
+Check:
 
 ```text
-C:\Oviora\portable-bin\oviora.cmd
+ANDROID_HOME
+platform-tools
+cmdline-tools
 ```
 
-If NPM global `oviora` appears first, the wrong command is running. Reinstall the Windows Installer or move `C:\Oviora\portable-bin` to the top of User PATH.
+### Problem: No device found
 
-### No device found
-
-Run:
+Fix:
 
 ```powershell
 adb devices
 ```
 
-Then check:
+Then:
 
 ```text
-USB debugging enabled
-USB cable supports data transfer
-Phone authorization popup accepted
-Android device drivers installed if required
+Enable USB debugging
+Reconnect USB
+Accept phone permission popup
 ```
 
-### APK install failed
+### Problem: APK install failed
 
 Possible causes:
 
@@ -762,7 +1175,7 @@ adb uninstall your.package.name
 oviora br
 ```
 
-### Java compile error
+### Problem: Java compile error
 
 Check:
 
@@ -780,7 +1193,7 @@ findViewById points to missing id
 Wrong package line
 ```
 
-### Android resource error
+### Problem: Android resource error
 
 Check:
 
@@ -799,7 +1212,31 @@ Wrong @color/name
 Invalid XML syntax
 ```
 
-### Google Sign-In error code 10
+### Problem: `default_web_client_id` not found
+
+Cause:
+
+```text
+Google services Gradle plugin is not applied
+or google-services.json was not copied to app/google-services.json
+```
+
+Fix:
+
+```powershell
+oviora sync
+oviora br
+```
+
+Also check:
+
+```text
+build.gradle
+app/build.gradle
+app/google-services.json
+```
+
+### Problem: Google Sign-In error code 10
 
 Usually caused by SHA-1 mismatch.
 
@@ -809,7 +1246,49 @@ Fix:
 .\gradlew.bat signingReport
 ```
 
-Add SHA-1 in Firebase Console and download a fresh `google-services.json`.
+Add SHA1 in Firebase Console and download fresh `google-services.json`.
+
+### Problem: Notification does not show
+
+Check:
+
+```text
+Android 13+ needs POST_NOTIFICATIONS permission
+Notification permission is allowed
+Notification channel is created
+Phone notification settings are not blocked
+```
+
+### Problem: Camera does not open
+
+Check:
+
+```text
+Camera permission allowed
+Device has a camera app installed
+Camera is not blocked
+```
+
+### Problem: Microphone test fails
+
+Check:
+
+```text
+Microphone permission allowed
+No other app is using microphone
+Device microphone is working
+```
+
+### Problem: Location not received
+
+Check:
+
+```text
+Location permission allowed
+GPS/location is ON
+Internet/network location is ON
+Wait up to 10 seconds
+```
 
 ---
 
@@ -825,18 +1304,25 @@ private_key
 *.jks
 *.keystore
 signing.properties
-release-key.jks
 ```
+
+For public demo repositories, prefer:
+
+```text
+google-services.sample.json
+```
+
+Do not paste your real private keys into README.
 
 Android `google-services.json` is normally included in Android apps, but public repositories should avoid exposing real project config unless you understand the risk.
 
 ---
 
-## Current Plugin System Status
+## Plugin System Status
 
-Current version supports manual native feature testing by editing files.
+### Current v0.2
 
-These commands are planned, not fully implemented yet:
+These native feature commands are still planned, not fully implemented:
 
 ```text
 oviora add firebase
@@ -850,15 +1336,106 @@ oviora add background-task
 oviora add volume-buttons
 oviora build release-apk
 oviora build aab
+```
+
+Current v0.2 supports manual native feature testing by editing files.
+
+---
+
+## Future Upgrade Plan
+
+Planned commands:
+
+```text
+oviora add firebase
+oviora add google-login
+oviora add camera
+oviora add notification
+oviora add microphone
+oviora add location
+oviora add manifest
+oviora logs
+oviora clean
+oviora open
+oviora build release-apk
+oviora build aab
 oviora release init
 oviora doctor fix
 ```
 
+### Future `oviora add firebase`
+
+Will automatically add:
+
+```text
+Google services plugin
+Firebase BoM
+Firebase Auth dependency
+google-services.json check
+Firebase setup helper
+```
+
+### Future `oviora add google-login`
+
+Will automatically generate:
+
+```text
+Google Sign-In button
+FirebaseAuth code
+GoogleSignInClient setup
+Name/email display code
+Sign out button
+```
+
+### Future `oviora add notification`
+
+Will generate:
+
+```text
+POST_NOTIFICATIONS permission
+Notification channel
+Local notification demo
+NotificationManager code
+```
+
+### Future `oviora add camera`
+
+Will generate:
+
+```text
+CAMERA permission
+Camera intent test
+Camera button
+Runtime permission code
+```
+
+### Future `oviora add microphone`
+
+Will generate:
+
+```text
+RECORD_AUDIO permission
+MediaRecorder demo
+3-second test recording
+Runtime permission code
+```
+
+### Future `oviora add location`
+
+Will generate:
+
+```text
+ACCESS_FINE_LOCATION permission
+ACCESS_COARSE_LOCATION permission
+LocationManager demo
+Latitude/longitude output
+```
+
 ---
 
-## Release APK and AAB Status
+## Release, Signed APK, and AAB Status
 
-Current version supports debug APK:
+Current v0.2 supports debug APK:
 
 ```powershell
 oviora build
@@ -879,9 +1456,9 @@ Development
 Learning
 ```
 
-Release APK and AAB support are planned for future versions.
+It is not the final Play Store release build.
 
-Future commands:
+Future release commands:
 
 ```powershell
 oviora build release-apk
@@ -898,6 +1475,12 @@ Version code
 Version name
 AAB export
 APK export
+```
+
+Security rule:
+
+```text
+Never upload release-key.jks or signing passwords publicly.
 ```
 
 ---
@@ -932,7 +1515,7 @@ restore
 status
 ```
 
-Do not assume this is Cordova, Capacitor, Flutter, React Native, or WebView.
+Do not assume this is Cordova, Capacitor, Flutter, or React Native.
 
 It is:
 
@@ -944,13 +1527,13 @@ Native Android Java/XML generated by a lightweight CLI.
 
 ## For Developers
 
-Current simple CLI entry:
+Current simple structure:
 
 ```text
 bin/oviora.js
 ```
 
-Recommended future modular structure:
+Future modular structure:
 
 ```text
 src/
@@ -976,21 +1559,61 @@ src/
 
 ---
 
-## Roadmap
+## Recommended First Test
 
-Planned improvements:
+```powershell
+oviora doctor
+oviora create TestApp --package com.example.testapp
+cd TestApp
+oviora br
+```
+
+Success means:
 
 ```text
-More app templates
-Better project generator
-Built-in guide command
-Installer Open Oviora Terminal button
-Automatic Firebase setup command
-Automatic native feature commands
-Release APK support
-AAB export support
-More beginner examples
-Improved documentation website
+APK built
+APK installed
+App launched
+```
+
+---
+
+## Recommended Firebase + Native Test
+
+```powershell
+oviora create YuvaJyoti --package com.yuvajyoti
+cd YuvaJyoti
+```
+
+Add:
+
+```text
+oviora/firebase/google-services.json
+```
+
+Update:
+
+```text
+build.gradle
+app/build.gradle
+gradle.properties
+app/src/main/AndroidManifest.xml
+oviora/layout/activity_main.xml
+oviora/java/MainActivity.java
+```
+
+Run:
+
+```powershell
+oviora br
+```
+
+Expected:
+
+```text
+Google Sign-In works
+Name/email shows
+Native feature buttons work
 ```
 
 ---
@@ -1000,13 +1623,10 @@ Improved documentation website
 Oviora Builder turns this complex Android workflow:
 
 ```text
-Install Java
-Install Android SDK
-Configure ADB
-Configure Gradle
 Create Android project
 Write Java
 Write XML
+Configure Gradle
 Build APK
 Install APK
 Launch app
@@ -1020,10 +1640,6 @@ cd MyApp
 oviora br
 ```
 
-With the Windows Installer, users can start without manually installing Android Studio, Java, Android SDK, Gradle, Node.js, or ADB.
+Current v0.2 adds safe sync, backup, restore, status, custom package support, Firebase config sync, and native Android manual test support.
 
----
-
-## Final Tagline
-
-**Oviora Builder — Native Android Java/XML development made lightweight.**
+Future versions will add automatic plugin commands for Firebase, Google login, camera, notification, microphone, location, release APK, and AAB.
