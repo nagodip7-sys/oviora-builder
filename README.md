@@ -3,7 +3,7 @@
 🌐 **Official Website:** https://oviora-builder.netlify.app/  
 📦 **NPM Package:** https://www.npmjs.com/package/oviora-builder  
 💻 **GitHub Repository:** https://github.com/nagodip7-sys/oviora-builder  
-📝 **Blog:** https://oviora-builder.hashnode.dev/oviora-builder-a-lightweight-android-studio-alternative-for-low-spec-pcs  
+📝 **Blog:** https://oviora-builder.hashnode.dev/oviora-builder-a-lightweight-android-studio-alternative-for-low-spec-windows-pcs  
 ▶️ **YouTube:** http://www.youtube.com/@OvioraBuilder  
 🪟 **Windows Installer:** https://github.com/nagodip7-sys/oviora-builder/releases/download/v1.0.0-windows-installer/Oviora.Builder.Installer.Setup.1.0.0.exe
 
