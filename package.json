@@ -23,7 +23,7 @@
     "url": "git+https://github.com/nagodip7-sys/oviora-builder.git"
   },
   "license": "MIT",
-  "author": "Amer Das",
+  "author": "Nagodip Adhikary",
   "type": "commonjs",
   "main": "bin/oviora.js",
   "bin": {
