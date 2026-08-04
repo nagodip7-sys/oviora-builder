@@ -508,13 +508,16 @@ oviora
 oviora doctor
 oviora create MyApp
 oviora create MyApp --package com.example.myapp
+oviora create MyApp --activity Main,Settings,Detail
 oviora sync
+oviora lint
 oviora build
 oviora run
 oviora br
 oviora restore
 oviora restore --force
 oviora status
+oviora migrate androidx
 ```
 
 Recommended beginner command:
@@ -816,9 +819,11 @@ Before sync, Oviora creates backups here:
 .oviora/backups/
 ```
 
+Every `sync` creates a timestamped backup before making changes, and only the **last 5 backups** are kept — older ones are automatically pruned so `.oviora/backups/` does not grow without limit.
+
 ### No Dangerous Auto-Restore During Build
 
-If a workspace file is missing, Oviora does not silently restore old files during build.
+If a workspace file is missing, Oviora does not silently restore old files during build. It also does not auto-recreate missing workspace folders on its own — this is a deliberate safety choice, since guessing at what a missing folder should contain risks silently overwriting real project files.
 
 Use this command only when you want default files back:
 
@@ -830,6 +835,123 @@ Force restore:
 
 ```powershell
 oviora restore --force
+```
+
+---
+
+## `oviora lint` — Built-in Static Reference Checker
+
+`oviora lint` is a lightweight static analyzer built into the CLI. It cross-checks every `R.layout.*`, `R.id.*`, `R.drawable.*`, and similar resource reference in your code against the actual files and IDs present in the workspace.
+
+Why this matters:
+
+```text
+Broken resource references are normally caught only when Gradle fails,
+late in the build, as a slow "cannot find symbol" error.
+oviora lint catches the same mistake before the build even starts,
+and reports the exact file and line where the broken reference lives.
+```
+
+Run it directly:
+
+```powershell
+oviora lint
+```
+
+It also runs automatically as part of the `oviora br` pipeline, before the Gradle build step, so broken references are caught early rather than at the end of a slow build.
+
+Note:
+
+```text
+oviora lint is regex-based, not a full XML/Java parser.
+This is a deliberate tradeoff — it is fast and dependency-light,
+and covers the resource-reference mistakes that beginners hit most often.
+```
+
+---
+
+## Stale APK Detection
+
+Oviora tracks whether the workspace or config has changed more recently than the last built APK.
+
+```text
+oviora run and oviora br check the modification time of the workspace/config against the built APK.
+If the workspace is newer than the APK, Oviora rebuilds automatically before installing,
+so you never accidentally install an old/stale APK to your device.
+```
+
+Check current status any time with:
+
+```powershell
+oviora status
+```
+
+---
+
+## Explained Errors (`explainError`)
+
+Instead of surfacing a raw Gradle/Android stack trace, Oviora recognizes a set of common failure patterns and explains them in plain language along with a suggested fix. Recognized cases include:
+
+```text
+Missing/incorrect Android SDK path
+No connected device found
+"cannot find symbol" compile errors
+Manifest merger failures
+AndroidX vs support-library mismatches
+Incorrect "@" prefix usage on attributes like selectableItemBackground
+```
+
+When Gradle build output is streamed live (with a spinner and elapsed time shown during long builds), any recognized error at the end is followed by a short, actionable explanation instead of leaving you to interpret the raw trace yourself.
+
+---
+
+## Multi-Activity Projects
+
+Projects are no longer limited to a single Activity. You can declare multiple Activities either in `oviora.config.json` (via the `activities` array) or directly from the command line:
+
+```powershell
+oviora create MyApp --activity Main,Settings,Detail
+```
+
+Oviora auto-generates the launcher activity, parent/child relationships, and the required intent-filters for each declared Activity — no manual `AndroidManifest.xml` editing needed to wire up a multi-screen app.
+
+Older single-activity `oviora.config.json` files are automatically upgraded to the newer `activities` array format when read, so existing projects continue to work without manual migration.
+
+---
+
+## `oviora migrate androidx`
+
+Helps migrate a project toward AndroidX.
+
+```powershell
+oviora migrate androidx
+```
+
+What it does:
+
+```text
+Automatically updates gradle.properties for AndroidX
+```
+
+What it deliberately does NOT do:
+
+```text
+Does not auto-rename remaining android.support.* imports.
+It only warns about them.
+```
+
+This is intentional: `android.support.*` to AndroidX class renames are not always a simple 1:1 rename, so Oviora avoids risky automatic rewrites here and leaves the decision to the developer.
+
+---
+
+## Config Validation
+
+Before building, `oviora.config.json` is validated and invalid configs are rejected early with a specific, actionable error message rather than failing later inside Gradle. Checks include:
+
+```text
+Valid Android package name format
+Required activity fields present
+Exactly one launcher Activity declared
 ```
 
 ---
@@ -876,6 +998,8 @@ Default package:
 com.oviora.myapp
 ```
 
+The default template is not a bare empty Activity — it ships a complete dark-theme demo UI (header, bottom navigation, card layout, and a consistent icon set), and a `README.txt` is generated inside the project workspace explaining the structure.
+
 ### `oviora create MyApp --package com.example.myapp`
 
 Creates a project with a custom package name.
@@ -885,6 +1009,16 @@ oviora create MyApp --package com.example.myapp
 ```
 
 Use this for Firebase apps and real projects.
+
+### `oviora create MyApp --activity Main,Settings,Detail`
+
+Creates a project scaffolded with multiple Activities in a single command.
+
+```powershell
+oviora create MyApp --activity Main,Settings,Detail
+```
+
+Launcher, parent, and intent-filter wiring for each Activity is generated automatically.
 
 ### `oviora sync`
 
@@ -902,6 +1036,16 @@ oviora/java/     -> app/src/main/java/<package>/
 oviora/images/   -> app/src/main/res/drawable/
 oviora/values/   -> app/src/main/res/values/
 oviora/firebase/google-services.json -> app/google-services.json
+```
+
+A timestamped backup of the current generated output is created in `.oviora/backups/` before every sync (only the last 5 backups are kept).
+
+### `oviora lint`
+
+Statically checks all `R.layout.*`, `R.id.*`, `R.drawable.*`, and similar resource references against the actual workspace files/IDs, and reports the exact file and line of any broken reference — before Gradle ever runs.
+
+```powershell
+oviora lint
 ```
 
 ### `oviora build`
@@ -926,7 +1070,7 @@ Installs and launches the APK on a connected Android phone.
 oviora run
 ```
 
-If APK is missing or stale, Oviora may rebuild first.
+If APK is missing or stale (workspace/config modified more recently than the built APK), Oviora rebuilds first automatically.
 
 ### `oviora br`
 
@@ -936,7 +1080,7 @@ Build + Run.
 oviora br
 ```
 
-Recommended daily beginner command.
+Recommended daily beginner command. Runs validation, `lint`, backup, `sync`, `build`, install, and launch in sequence.
 
 ### `oviora restore`
 
@@ -971,6 +1115,14 @@ Workspace status
 APK status
 Missing folders
 Stale APK status
+```
+
+### `oviora migrate androidx`
+
+Updates `gradle.properties` for AndroidX and warns (without auto-renaming) about any remaining `android.support.*` imports.
+
+```powershell
+oviora migrate androidx
 ```
 
 ---
@@ -1870,6 +2022,8 @@ platform-tools
 cmdline-tools
 ```
 
+`explainError` also recognizes this failure directly during a build and prints a plain-language explanation with the missing path instead of the raw Gradle trace.
+
 ---
 
 ### Problem: No Android device found
@@ -1888,6 +2042,8 @@ Enable USB Debugging
 Reconnect USB cable
 Accept the phone permission popup
 ```
+
+This is also one of the failure patterns recognized by `explainError`.
 
 ---
 
@@ -1957,6 +2113,8 @@ findViewById points to missing id
 Wrong package line
 ```
 
+`explainError` recognizes "cannot find symbol" errors and points to the likely cause instead of just surfacing the raw compiler trace.
+
 ---
 
 ### Problem: Android resource error
@@ -1977,6 +2135,8 @@ Wrong @drawable/name
 Wrong @color/name
 Invalid XML syntax
 ```
+
+Run `oviora lint` first — it catches most broken `@drawable/`, `@color/`, `@layout/`, and `@id/` references before Gradle even starts, with the exact file and line.
 
 ---
 
@@ -2018,6 +2178,20 @@ Fix:
 ```
 
 Add SHA-1 in Firebase Console and download a fresh `google-services.json`.
+
+---
+
+### Problem: Manifest merger failed / AndroidX vs support-lib mismatch
+
+`explainError` recognizes manifest merger failures and AndroidX vs. support-library dependency mismatches directly, and explains the likely cause instead of leaving you to read the raw merger error. A common related mistake — using an incorrect `@` prefix on attributes such as `selectableItemBackground` — is also specifically recognized and explained.
+
+If you are partway through an AndroidX migration, run:
+
+```powershell
+oviora migrate androidx
+```
+
+This updates `gradle.properties` automatically. Any remaining `android.support.*` imports are only reported as warnings, not auto-renamed, since that rename is not always 1:1 — you should review and update them manually.
 
 
 ---
@@ -2402,11 +2576,13 @@ Important current commands:
 doctor
 create
 sync
+lint
 build
 run
 br
 restore
 status
+migrate androidx
 ```
 
 Do not assume this is Cordova, Capacitor, Flutter, or React Native.
@@ -2434,11 +2610,13 @@ src/
   doctor.js
   create.js
   sync.js
+  lint.js
   build.js
   run.js
   restore.js
   status.js
   errors.js
+  migrate.js
   plugins/
     firebase.js
     google-login.js
@@ -2450,6 +2628,22 @@ src/
   templates/
   release/
 ```
+
+### Design Notes for Contributors
+
+A few internal design decisions are intentional and documented in code comments, since they affect how contributions should be made:
+
+```text
+oviora lint is regex-based rather than a full parser — this is
+deliberate for speed and simplicity, not an oversight.
+
+Missing workspace folders and remaining android.support.* imports
+are never auto-restored/auto-renamed by build commands — this is a
+deliberate safety choice to avoid silently overwriting or breaking
+a developer's real project files.
+```
+
+Contributors extending `lint.js`, `sync.js`, or `migrate.js` should preserve this fail-safe, explicit-opt-in behavior rather than making these commands more automatic by default.
 
 ---
 
@@ -2571,10 +2765,17 @@ Current v0.2 adds:
 ```text
 Safe sync
 Mirror sync
-Backup before sync
+Backup before sync (last 5 kept)
 Restore command
 Status command
 Custom package name support
+Multi-activity project support (--activity Main,Settings,Detail)
+Built-in static lint / reference checker (oviora lint)
+Stale APK detection and auto-rebuild
+Plain-language explained errors (explainError)
+AndroidX migration helper (oviora migrate androidx)
+Backward-compatible config schema upgrades
+Config validation with actionable errors
 Debug APK build
 ADB install
 ADB launch
